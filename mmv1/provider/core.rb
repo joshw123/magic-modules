@@ -144,7 +144,7 @@ module Provider
           FileUtils.copy_entry source, target_file
 
           add_hashicorp_copyright_header(output_folder, target) if File.extname(target) == '.go'
-          replace_import_path(output_folder, target) if File.extname(target) == '.go'
+          replace_import_path(output_folder, target) if File.extname(target) == '.go' || File.extname(target) == '.mod'
         end
       end.map(&:join)
     end
@@ -305,6 +305,11 @@ module Provider
       data = data.gsub(
         "#{TERRAFORM_PROVIDER_GA}/version",
         "#{tpg}/version"
+      )
+
+      data = data.gsub(
+        "module #{TERRAFORM_PROVIDER_GA}",
+        "module #{tpg}"
       )
       File.write("#{output_folder}/#{target}", data)
     end

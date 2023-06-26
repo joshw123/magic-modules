@@ -141,4 +141,5 @@
 <% end -%>
 <% end -%>
 'version/version.go': 'third_party/terraform/version/version.go'
+'go.mod': 'third_party/terraform/go.mod'
 'go.sum': 'third_party/terraform/go.sum'
